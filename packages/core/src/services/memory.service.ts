@@ -213,6 +213,22 @@ export class MemoryService {
 		};
 	}
 
+	async getById(id: string): Promise<MemoryRecord | null> {
+		const [result] = await this.db
+			.select({
+				id: schema.memories.id,
+				content: schema.memories.content,
+				type: schema.memories.type,
+				metadata: schema.memories.metadata,
+				createdAt: schema.memories.createdAt,
+				updatedAt: schema.memories.updatedAt,
+			})
+			.from(schema.memories)
+			.where(eq(schema.memories.id, id));
+
+		return result ?? null;
+	}
+
 	async listRecent(options?: {
 		days?: number;
 		limit?: number;

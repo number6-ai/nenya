@@ -13,7 +13,7 @@ export const captureTemplates: Record<string, CaptureTemplate> = {
 	person: {
 		name: "Person",
 		description: "Capture information about a person",
-		template: "[Name] — [role/relationship]. Key context: [notes]. Contact: [info].",
+		template: "[Name], [role/relationship]. Key context: [notes]. Contact: [info].",
 	},
 	insight: {
 		name: "Insight",

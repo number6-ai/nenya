@@ -5,6 +5,7 @@ import * as schema from "./db/schema.js";
 import { createEmbeddingProvider } from "./embeddings/index.js";
 import { createLlmProvider } from "./llm/index.js";
 import { startMcpServer } from "./mcp/server.js";
+import { startRestServer } from "./rest/server.js";
 import { ExtractionService } from "./services/extraction.service.js";
 import { MemoryService } from "./services/memory.service.js";
 
@@ -17,7 +18,7 @@ async function main() {
 	const extractionService = new ExtractionService(llmProvider);
 	const memoryService = new MemoryService(db, embeddingProvider, extractionService);
 
-	await startMcpServer(memoryService);
+	await Promise.all([startMcpServer(memoryService), startRestServer(memoryService, config)]);
 }
 
 main().catch((error) => {
