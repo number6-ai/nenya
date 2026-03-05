@@ -1,0 +1,19 @@
+{
+	"name": "nenya",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"lint": "biome check .",
+		"lint:fix": "biome check --write .",
+		"test": "pnpm --filter @nenya/core test",
+		"build": "pnpm --filter @nenya/core build"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^1.9.4",
+		"typescript": "^5.7.3"
+	},
+	"engines": {
+		"node": ">=20"
+	},
+	"packageManager": "pnpm@9.15.4"
+}

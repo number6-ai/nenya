@@ -1,0 +1,38 @@
+# Nenya configuration
+# Copy this file to nenya.yaml and customize.
+# Values support ${ENV_VAR} and ${ENV_VAR:-default} syntax.
+
+database:
+  url: ${DATABASE_URL:-postgresql://nenya:nenya@localhost:5432/nenya}
+
+embedding:
+  # Provider: openai (works with any OpenAI-compatible API) | ollama
+  provider: openai
+  dimensions: 1536
+  openai:
+    api_key: ${OPENAI_API_KEY}
+    base_url: https://api.openai.com/v1
+    model: text-embedding-3-small
+  ollama:
+    base_url: http://localhost:11434
+    model: nomic-embed-text
+
+llm:
+  # Provider: openai (works with any OpenAI-compatible API) | anthropic | ollama
+  provider: openai
+  openai:
+    api_key: ${OPENAI_API_KEY}
+    # Change base_url to use OpenRouter, Together, Groq, local vLLM, etc.
+    base_url: https://api.openai.com/v1
+    model: gpt-4o-mini
+  anthropic:
+    api_key: ${ANTHROPIC_API_KEY}
+    model: claude-sonnet-4-20250514
+  ollama:
+    base_url: http://localhost:11434
+    model: llama3
+
+server:
+  mcp_port: 3100
+  rest_port: 3101
+  api_key: ${API_KEY}
